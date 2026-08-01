@@ -1,7 +1,7 @@
 @import "./common/forms.css";
 
 .container--login {
-    height: 100vh;
+    height: 95vh;
 }
 
 .login_panel {
