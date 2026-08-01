@@ -1,5 +1,9 @@
 @import "./common/forms.css";
 
+.container--login {
+    height: 100vh;
+}
+
 .login_panel {
 
     width: 350px;
