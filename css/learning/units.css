@@ -1,0 +1,33 @@
+.units {
+    display: flex;
+    flex-direction: column;
+}
+
+.unit {
+    width: 350px;
+    min-height: 30px;
+    margin-bottom: 10px;
+
+    background-color: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+
+    color: var(--text-secondary-color);
+    cursor: pointer;
+}
+
+
+@media (min-width: 900px) {
+    .unit:hover {
+        border-color: white;
+        color: white;
+    }
+}
+
+
+@media (max-width: 575px) {
+    .unit {
+        min-height: 50px;
+        font-size: 20px;
+    }
+}

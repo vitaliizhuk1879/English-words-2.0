@@ -1,0 +1,43 @@
+.words_header {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+
+    gap: 20px;
+
+    padding: 10px 35px 10px 0;
+
+    border-bottom: 2px solid var(--border-color);
+
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+
+
+.word_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 10px 0;
+
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+.word_ukrainian,
+.word_english {
+    color: var(--text-secondary-color);
+}
+
+
+@media (max-width: 575px) {
+
+    .word_row {
+        grid-template-columns: 1fr;
+    }
+
+}

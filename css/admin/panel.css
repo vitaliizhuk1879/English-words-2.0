@@ -1,0 +1,68 @@
+.admin_panel h1,
+.admin_panel h2 {
+    color: var(--text-color);
+
+    font-weight: 500;
+}
+
+.admin_panel h1 {
+    text-align: center;
+
+    margin-bottom: 20px;
+}
+
+.admin_panel h2 {
+    margin-top: 10px;
+}
+
+.admin_panel {
+    width: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+    padding: 25px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+.admin_panel hr {
+    width: 100%;
+
+    border: none;
+    border-top: 1px solid var(--border-color);
+
+    margin: 10px 0;
+}
+
+.admin_section {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.admin_form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.admin_unit_row {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 8px 0;
+
+    border-bottom: 1px solid var(--border-color);
+
+    color: var(--text-secondary-color);
+}
+

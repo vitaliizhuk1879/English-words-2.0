@@ -1,0 +1,115 @@
+@import "./common/forms.css";
+
+.login_panel {
+
+    width: 350px;
+
+    padding: 25px;
+
+    border: 1px solid #4a4d51;
+    border-radius: 10px;
+
+}
+
+
+.login_panel h1 {
+
+    margin-bottom: 25px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+
+    text-align: center;
+    color: #ededed;
+
+}
+
+
+
+.login_form {
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+
+.login_form input {
+
+    width: 100%;
+    height: 42px;
+
+    padding: 0 12px;
+
+    background: transparent;
+
+    border: 1px solid #4a4d51;
+    border-radius: 7px;
+
+    outline: none;
+
+    font-family: "Poppins", sans-serif;
+    color: #ededed;
+
+}
+
+
+
+.login_form input::placeholder {
+
+    color: #8b949e;
+
+}
+
+
+
+.login_form input:focus {
+
+    border-color: white;
+
+}
+
+
+
+.login_form button {
+
+    height: 42px;
+
+    background: transparent;
+
+    border: 1px solid #4a4d51;
+    border-radius: 7px;
+
+    color: #ededed;
+
+    font-family: "Poppins", sans-serif;
+
+    cursor: pointer;
+
+}
+
+
+
+.login_form button:hover {
+
+    border-color: white;
+
+    color: white;
+
+}
+
+
+
+@media (max-width: 575px) {
+
+    .login_panel {
+
+        width: 100%;
+
+    }
+
+}

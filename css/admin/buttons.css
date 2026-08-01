@@ -1,0 +1,115 @@
+button {
+    height: 40px;
+
+    background-color: transparent;
+
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+
+    color: var(--text-secondary-color);
+
+    font-family: "Poppins", sans-serif;
+
+    cursor: pointer;
+
+    transition: border-color .2s, color .2s;
+}
+
+
+button:hover {
+    border-color: white;
+    color: white;
+}
+
+
+button:active {
+    transform: scale(.98);
+}
+
+.delete_unit_btn {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text-secondary-color);
+
+    background: transparent;
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 22px;
+}
+
+
+.delete_unit_btn:hover {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+
+.delete_word_btn {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: var(--text-secondary-color);
+
+    background: transparent;
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.delete_word_btn:hover {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+}
+
+
+.delete_word_btn svg {
+    pointer-events: none;
+}
+
+.edit_word_btn {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: transparent;
+
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    color: var(--text-secondary-color);
+}
+
+
+.edit_word_btn:hover {
+    color: #6ea8fe;
+    border-color: #6ea8fe;
+}
+
+
+.word_actions {
+    display: flex;
+    gap: 8px;
+}

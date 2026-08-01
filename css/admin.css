@@ -1,0 +1,12 @@
+@import "./common/variables.css";
+@import "./common/reset.css";
+@import "./common/layout.css";
+@import "./common/typography.css";
+
+
+@import "./admin/panel.css";
+@import "./admin/forms.css";
+@import "./admin/words-table.css";
+@import "./admin/buttons.css";
+@import "./admin/admin-mobile.css";
+@import "./common/forms.css";

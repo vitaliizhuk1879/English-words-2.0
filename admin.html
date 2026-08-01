@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel</title>
+
+    <link rel="stylesheet" href="./css/admin.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="admin_panel">
+
+            <h1>Admin Panel</h1>
+
+
+            <section class="admin_section">
+
+                <h2>Create Unit</h2>
+
+                <div class="admin_form">
+                    <input id="unit_title_input" type="text" placeholder="Unit title">
+
+                    <button id="create_unit_btn">
+                        Add Unit
+                    </button>
+                </div>
+
+                <h2>Units</h2>
+
+                <div id="admin_units"></div>
+
+            </section>
+
+
+            <hr>
+
+
+            <section class="admin_section">
+
+                <h2>Create Word</h2>
+
+                <div class="admin_form">
+
+                    <select id="unit_select"></select>
+
+                    <input id="ukrainian_input" type="text" placeholder="Ukrainian">
+
+                    <input id="english_input" type="text" placeholder="English">
+
+                    <button id="add_word_btn">
+                        Add Word
+                    </button>
+
+                    <button id="cancel_edit_btn" hidden>
+                        Cancel
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <hr>
+
+
+            <section class="admin_section">
+
+                <h2>Words</h2>
+
+                <div class="words_header">
+                    <span>Ukrainian</span>
+                    <span>English</span>
+                </div>
+
+                <div id="words_list"></div>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="./js/admin-main.js"></script>
+</body>
+
+</html>

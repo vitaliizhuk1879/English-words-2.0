@@ -1,0 +1,32 @@
+input,
+select {
+    width: 100%;
+    height: 40px;
+
+    padding: 0 10px;
+
+    background-color: transparent;
+
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+
+    color: var(--text-color);
+
+    font-family: inherit;
+}
+
+input::placeholder {
+    color: var(--text-secondary-color);
+}
+
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: white;
+}
+
+select option {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}

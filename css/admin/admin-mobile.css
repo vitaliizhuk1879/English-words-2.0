@@ -1,0 +1,60 @@
+@media (max-width: 575px) {
+
+    .container {
+        width: 100%;
+        padding: 15px;
+        align-items: stretch;
+    }
+
+     .admin_panel {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .admin_panel h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+
+    .admin_panel h2 {
+        font-size: 22px;
+    }
+
+    .admin_form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+    .admin_form input,
+    .admin_form select,
+    .admin_form button {
+
+        width: 100%;
+        min-height: 45px;
+
+    }
+
+    .words_header {
+        display: none;
+    }
+
+
+    .word_row {
+
+        grid-template-columns: 1fr;
+        gap: 8px;
+
+        padding: 15px 0;
+
+    }
+
+    .word_actions {
+
+        justify-content: flex-start;
+
+    }
+
+}
+
