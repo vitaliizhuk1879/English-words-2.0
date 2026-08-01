@@ -9,6 +9,13 @@ export const supabaseClient = window.supabase.createClient(
 
 // Units
 export async function getUnits() {
+
+    const cachedUnits = localStorage.getItem('units');
+
+    if (cachedUnits) {
+        return JSON.parse(cachedUnits);
+    }
+
     const { data, error } = await supabaseClient
         .from('units')
         .select('*')
@@ -18,6 +25,8 @@ export async function getUnits() {
         console.error(error);
         return [];
     }
+
+    localStorage.setItem('units', JSON.stringify(data));
 
     return data;
 }
@@ -59,19 +68,29 @@ export async function deleteUnit(id) {
 
 // Words
 export async function getWordsByUnit(unitId) {
+
+    const cacheKey = `words_${unitId}`;
+
+    const cachedWords = localStorage.getItem(cacheKey);
+
+    if (cachedWords) {
+        return JSON.parse(cachedWords);
+    }
+
     const { data, error } = await supabaseClient
         .from('words')
         .select('*')
         .eq('unit_id', unitId)
-        .order('id')
-
+        .order('id');
 
     if (error) {
-        console.error(error)
-        return []
+        console.error(error);
+        return [];
     }
 
-    return data
+    localStorage.setItem(cacheKey, JSON.stringify(data));
+
+    return data;
 }
 
 

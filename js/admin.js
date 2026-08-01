@@ -51,6 +51,8 @@ async function handleCreateUnit() {
         return;
     }
 
+    await refreshUnitsCache();
+
     await renderUnitsSelect();
     await loadWords();
     await renderAdminUnits(handleDeleteUnit);
@@ -125,6 +127,7 @@ async function handleAddWord() {
 
     ukrainianInput.focus();
 
+    await refreshWordsCache(unitId);
     await loadWords();
 }
 
@@ -174,6 +177,8 @@ function handleEditWord(word) {
     setUpdateWordMode();
 
     ukrainianInput.focus();
+
+    await refreshWordsCache(unitId);
 }
 
 
@@ -187,6 +192,8 @@ function handleCancelEdit() {
     setAddWordMode();
 
     ukrainianInput.focus();
+
+    await refreshWordsCache(unitId);
 }
 
 
@@ -205,6 +212,8 @@ async function handleDeleteWord(wordId) {
         console.error(result.error);
         return;
     }
+
+    await refreshWordsCache(unitId);
 
     await loadWords();
 }
@@ -226,6 +235,8 @@ async function handleDeleteUnit(unitId) {
         return;
     }
 
+    await refreshUnitsCache();
+    
     await renderAdminUnits(handleDeleteUnit);
     await renderUnitsSelect();
     await loadWords();

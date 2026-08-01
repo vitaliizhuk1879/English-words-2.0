@@ -12,6 +12,10 @@ import {
     chooseLanBtnEn,
 } from './ui/learning-ui.js';
 
+import { initializeCache } from './cashe.js';
+
+console.log('index.js loaded');
+
 
 
 chooseLanBtnUa.addEventListener('click', () => {
@@ -39,6 +43,8 @@ lowerBlock.addEventListener('pointerup', () => {
 
 
 async function init() {
+    await initializeCache();
+
     await renderUnits();
 }
 
