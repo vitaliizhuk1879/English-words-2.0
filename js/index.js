@@ -12,7 +12,7 @@ import {
     chooseLanBtnEn,
 } from './ui/learning-ui.js';
 
-import { initializeCache } from './cashe.js';
+import { initializeCache } from './cache.js';
 
 console.log('index.js loaded');
 
