@@ -107,8 +107,8 @@
 @media (max-width: 575px) {
 
     .login_panel {
-        width: 100%;
-        padding: 24px;
+        width: 95%;
+        padding: 10px;
     }
 
     .login_form input {
