@@ -107,9 +107,19 @@
 @media (max-width: 575px) {
 
     .login_panel {
-
         width: 100%;
+        padding: 24px;
+    }
 
+    .login_form input {
+        height: 52px;
+        padding: 0 16px;
+        font-size: 16px;
+    }
+
+    .login_form button {
+        height: 52px;
+        font-size: 16px;
     }
 
 }

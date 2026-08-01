@@ -6,7 +6,7 @@
         align-items: stretch;
     }
 
-     .admin_panel {
+    .admin_panel {
         width: 100%;
         padding: 15px;
     }
@@ -32,8 +32,19 @@
     .admin_form button {
 
         width: 100%;
-        min-height: 45px;
+    }
 
+    .admin_form input,
+    .admin_form select {
+        height: 52px;
+        padding: 0 16px;
+        font-size: 16px;
+    }
+
+    .admin_form button {
+        height: 52px;
+        padding: 0 20px;
+        font-size: 16px;
     }
 
     .words_header {
@@ -57,4 +68,3 @@
     }
 
 }
-
