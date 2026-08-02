@@ -73,7 +73,7 @@ export function renderWords(words, onDeleteWord, onEditWord) {
         });
 
         deleteBtn.addEventListener('click', () => {
-            onDeleteWord(word.id);
+            onDeleteWord(word);
         });
 
         actions.appendChild(editBtn);

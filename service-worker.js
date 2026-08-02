@@ -1,4 +1,4 @@
-const CACHE_NAME = 'english-words-v2';
+const CACHE_NAME = 'english-words-v1.0';
 
 const FILES_TO_CACHE = [
     '/',

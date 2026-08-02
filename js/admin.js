@@ -195,15 +195,15 @@ function handleCancelEdit() {
 }
 
 
-async function handleDeleteWord(wordId) {
+async function handleDeleteWord(word) {
 
-    const confirmed = confirm('Delete this word?');
+    const confirmed = confirm(`Delete "${word.english}"?`);
 
     if (!confirmed) {
         return;
     }
 
-    const result = await deleteWord(wordId);
+    const result = await deleteWord(word.id);
 
     if (result.error) {
         alert('Something went wrong.');
@@ -217,15 +217,15 @@ async function handleDeleteWord(wordId) {
 }
 
 
-async function handleDeleteUnit(unitId) {
+async function handleDeleteUnit(unit) {
 
-    const confirmed = confirm('Delete this unit?');
+    const confirmed = confirm(`Delete "${unit.title}"?`);
 
     if (!confirmed) {
         return;
     }
 
-    const result = await deleteUnit(unitId);
+    const result = await deleteUnit(unit.id);
 
     if (result.error) {
         console.error(result.error);

@@ -71,7 +71,7 @@ export async function renderAdminUnits(onDeleteUnit) {
 
 
         deleteBtn.addEventListener('click', () => {
-            onDeleteUnit(unit.id);
+            onDeleteUnit(unit);
         });
 
 
