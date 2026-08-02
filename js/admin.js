@@ -21,8 +21,10 @@ import {
 
 import {
     renderUnitsSelect,
-    renderAdminUnits
+    renderAdminUnits,
 } from './admin-units.js';
+
+import { refreshCache } from './cache.js';
 import { renderWords } from './words.js';
 
 
@@ -51,7 +53,7 @@ async function handleCreateUnit() {
         return;
     }
 
-    await refreshUnitsCache();
+    await refreshCache();
 
     await renderUnitsSelect();
     await loadWords();
@@ -127,7 +129,7 @@ async function handleAddWord() {
 
     ukrainianInput.focus();
 
-    await refreshWordsCache(unitId);
+    await refreshCache();
     await loadWords();
 }
 
@@ -177,8 +179,6 @@ function handleEditWord(word) {
     setUpdateWordMode();
 
     ukrainianInput.focus();
-
-    await refreshWordsCache(unitId);
 }
 
 
@@ -192,8 +192,6 @@ function handleCancelEdit() {
     setAddWordMode();
 
     ukrainianInput.focus();
-
-    await refreshWordsCache(unitId);
 }
 
 
@@ -213,7 +211,7 @@ async function handleDeleteWord(wordId) {
         return;
     }
 
-    await refreshWordsCache(unitId);
+    await refreshCache();
 
     await loadWords();
 }
@@ -235,8 +233,8 @@ async function handleDeleteUnit(unitId) {
         return;
     }
 
-    await refreshUnitsCache();
-    
+    await refreshCache();
+
     await renderAdminUnits(handleDeleteUnit);
     await renderUnitsSelect();
     await loadWords();

@@ -1,30 +1,42 @@
 import { supabaseClient } from './supabase.js';
 
+const emailElement = document.getElementById('email');
+const passwordElement = document.getElementById('password');
+const loginForm = document.querySelector('.login_form');
 
-const emailInput = document.getElementById('email');
-const passwordInput = document.getElementById('password');
-const loginBtn = document.getElementById('login_btn');
+async function handleLogin(event) {
 
+    event.preventDefault();
 
-loginBtn.addEventListener('click', async () => {
+    const email = emailElement.value.trim();
+    const password = passwordElement.value;
 
-    const email = emailInput.value;
-    const password = passwordInput.value;
-
-
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email,
-        password,
-    });
-
-
-    if (error) {
-        console.error(error);
-        alert(error.message);
+    if (!email || !password) {
+        alert('Fill in all fields.');
         return;
     }
 
+    try {
 
-    window.location.href = './admin.html';
+        const { error } = await supabaseClient.auth.signInWithPassword({
+            email,
+            password,
+        });
 
-});
+        if (error) {
+            alert(error.message);
+            return;
+        }
+
+        window.location.href = './admin.html';
+
+    } catch (error) {
+
+        console.error(error);
+        alert('Something went wrong. Please try again.');
+
+    }
+
+}
+
+loginForm.addEventListener('submit', handleLogin);

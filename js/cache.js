@@ -1,63 +1,96 @@
 import { supabaseClient } from './supabase.js';
 
+export async function refreshCache() {
 
-export async function refreshUnitsCache() {
-
-    const { data, error } = await supabaseClient
+    const { data: units, error: unitsError } = await supabaseClient
         .from('units')
         .select('*')
         .order('order_number');
 
-    if (error) {
-        console.error(error);
-        return;
+    if (unitsError) {
+        throw unitsError;
     }
 
-    localStorage.setItem('units', JSON.stringify(data));
-}
+    localStorage.setItem('units', JSON.stringify(units));
 
+    let allWords = [];
+    let from = 0;
+    const pageSize = 1000;
 
-export async function refreshWordsCache(unitId) {
+    while (true) {
 
-    const { data, error } = await supabaseClient
-        .from('words')
-        .select('*')
-        .eq('unit_id', unitId)
-        .order('id');
+        const { data, error } = await supabaseClient
+            .from('words')
+            .select('*')
+            .order('unit_id')
+            .order('id')
+            .range(from, from + pageSize - 1);
 
-    if (error) {
-        console.error(error);
-        return;
+        if (error) {
+            throw error;
+        }
+
+        allWords.push(...data);
+
+        if (data.length < pageSize) {
+            break;
+        }
+
+        from += pageSize;
     }
 
-    localStorage.setItem(
-        `words_${unitId}`,
-        JSON.stringify(data)
-    );
+    // Видаляємо старий кеш слів
+    Object.keys(localStorage).forEach(key => {
+        if (key.startsWith('words_')) {
+            localStorage.removeItem(key);
+        }
+    });
 
-    return data;
-}
+    const groupedWords = {};
 
+    for (const word of allWords) {
 
-export async function initializeCache() {
+        if (!groupedWords[word.unit_id]) {
+            groupedWords[word.unit_id] = [];
+        }
 
-    let cachedUnits = localStorage.getItem('units');
+        groupedWords[word.unit_id].push(word);
 
-    if (!cachedUnits) {
-        await refreshUnitsCache();
-        cachedUnits = localStorage.getItem('units');
     }
-
-    const units = JSON.parse(cachedUnits) || [];
 
     for (const unit of units) {
 
-        const cacheKey = `words_${unit.id}`;
+        localStorage.setItem(
+            `words_${unit.id}`,
+            JSON.stringify(groupedWords[unit.id] || [])
+        );
 
-        if (!localStorage.getItem(cacheKey)) {
-            await refreshWordsCache(unit.id);
-        }
+    }
+}
+
+export async function initializeCache() {
+
+    const hasCache = localStorage.getItem('units');
+
+    // Перший запуск
+    if (!hasCache) {
+
+        console.log('No cache. Downloading...');
+
+        await refreshCache();
+
+        return;
     }
 
-    console.log('Cache initialized');
+    console.log('Cache found.');
+
+    // Фонове оновлення кешу
+    refreshCache()
+        .then(() => {
+            console.log('Cache updated.');
+        })
+        .catch(() => {
+            console.log('Offline. Using local cache.');
+        });
+
 }

@@ -1,10 +1,10 @@
 import { requireAuth } from './auth.js';
 import { initAdmin } from './admin.js';
+import { supabaseClient } from './supabase.js';
 
 
 await requireAuth();
 
-import { supabaseClient } from './supabase.js';
 
 const { data } = await supabaseClient.auth.getSession();
 

@@ -14,8 +14,6 @@ import {
 
 import { initializeCache } from './cache.js';
 
-console.log('index.js loaded');
-
 
 
 chooseLanBtnUa.addEventListener('click', () => {
@@ -43,9 +41,21 @@ lowerBlock.addEventListener('pointerup', () => {
 
 
 async function init() {
+
     await initializeCache();
 
     await renderUnits();
+
+    if ('serviceWorker' in navigator) {
+        try {
+            await navigator.serviceWorker.register('./service-worker.js');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 }
 
 init();
+
+
