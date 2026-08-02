@@ -1,5 +1,6 @@
 import { getUnits } from './supabase.js';
 import { unitSelect } from './ui/admin-ui.js';
+import { getCacheStatistics } from './stats.js';
 
 
 export async function renderUnitsSelect() {
@@ -18,6 +19,13 @@ export async function renderUnitsSelect() {
 
         unitSelect.append(option);
     }
+
+    const { unitsCount, wordsCount } = getCacheStatistics();
+
+    const statisticsElement = document.getElementById('cache_statistics');
+
+    statisticsElement.textContent =
+        `(${unitsCount} units - ${wordsCount} words)`;
 }
 
 
