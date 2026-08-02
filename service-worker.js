@@ -1,4 +1,4 @@
-const CACHE_NAME = 'english-words-v1';
+const CACHE_NAME = 'english-words-v2';
 
 const FILES_TO_CACHE = [
     '/',
@@ -20,6 +20,7 @@ const FILES_TO_CACHE = [
     '/js/learning.js',
     '/js/state.js',
     '/js/supabase.js',
+    '/js/libs/supabase.min.js',
     '/js/units.js',
     '/js/utils.js',
     '/js/ui/learning-ui.js'
