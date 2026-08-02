@@ -40,10 +40,14 @@ export async function renderAdminUnits(onDeleteUnit) {
 
         const deleteBtn = document.createElement('button');
 
+        const words = JSON.parse(localStorage.getItem(`words_${unit.id}`) || '[]');
+
+        const wordsCount = words.length;
+
 
         row.className = 'admin_unit_row';
 
-        title.textContent = unit.title;
+        title.textContent = `${unit.title} — ${wordsCount} words`;
 
 
         deleteBtn.innerHTML = `
