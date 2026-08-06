@@ -66,6 +66,24 @@ export async function deleteUnit(id) {
 }
 
 
+export async function updateUnit(unitId, title) {
+
+    const { data, error } = await supabaseClient
+        .from('units')
+        .update({
+            title,
+        })
+        .eq('id', unitId)
+        .select()
+        .single();
+
+    return {
+        data,
+        error,
+    };
+}
+
+
 // Words
 export async function getWordsByUnit(unitId) {
 

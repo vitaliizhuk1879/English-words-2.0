@@ -2,6 +2,8 @@ export const unitTitleInput = document.getElementById('unit_title_input');
 
 export const createUnitBtn = document.getElementById('create_unit_btn');
 
+export const cancelUnitEditBtn = document.getElementById('cancel_unit_edit_btn');
+
 export const unitSelect = document.getElementById('unit_select');
 
 export const ukrainianInput = document.getElementById('ukrainian_input');
@@ -13,6 +15,29 @@ export const addWordBtn = document.getElementById('add_word_btn');
 export const wordsList = document.getElementById('words_list');
 
 export const cancelEditBtn = document.getElementById('cancel_edit_btn');
+
+
+export function setAddUnitMode() {
+
+    createUnitBtn.textContent = 'Create unit';
+
+    cancelUnitEditBtn.hidden = true;
+
+    unitTitleInput.value = '';
+
+    unitTitleInput.focus();
+
+}
+
+export function setUpdateUnitMode() {
+
+    createUnitBtn.textContent = 'Update unit';
+
+    cancelUnitEditBtn.hidden = false;
+
+    unitTitleInput.focus();
+
+}
 
 
 export function setUpdateWordMode() {

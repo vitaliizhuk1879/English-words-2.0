@@ -30,7 +30,7 @@ export async function renderUnitsSelect() {
 
 
 
-export async function renderAdminUnits(onDeleteUnit) {
+export async function renderAdminUnits(onDeleteUnit, onEditUnit) {
 
     const adminUnits = document.getElementById('admin_units');
 
@@ -48,15 +48,37 @@ export async function renderAdminUnits(onDeleteUnit) {
 
         const deleteBtn = document.createElement('button');
 
+        const actions = document.createElement('div');
+        const editBtn = document.createElement('button');
+
         const words = JSON.parse(localStorage.getItem(`words_${unit.id}`) || '[]');
 
         const wordsCount = words.length;
 
 
         row.className = 'admin_unit_row';
+        actions.className = 'word_actions';
+        editBtn.className = 'edit_word_btn';
 
         title.textContent = `${unit.title} — ${wordsCount} words`;
 
+        editBtn.innerHTML = `
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+
+            </svg>
+        `;
 
         deleteBtn.innerHTML = `
             <svg 
@@ -81,14 +103,20 @@ export async function renderAdminUnits(onDeleteUnit) {
 
         deleteBtn.className = 'delete_unit_btn';
 
+        editBtn.addEventListener('click', () => {
+            onEditUnit(unit);
+        });
 
         deleteBtn.addEventListener('click', () => {
             onDeleteUnit(unit);
         });
 
 
+        actions.appendChild(editBtn);
+        actions.appendChild(deleteBtn);
+
         row.appendChild(title);
-        row.appendChild(deleteBtn);
+        row.appendChild(actions);
 
 
         adminUnits.appendChild(row);

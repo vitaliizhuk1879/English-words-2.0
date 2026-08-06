@@ -1,6 +1,9 @@
 import {
     unitTitleInput,
     createUnitBtn,
+    setAddUnitMode,
+    setUpdateUnitMode,
+    cancelUnitEditBtn,
     unitSelect,
     ukrainianInput,
     englishInput,
@@ -16,6 +19,7 @@ import {
     getWordsByUnit,
     deleteWord,
     deleteUnit,
+    updateUnit,
     updateWord,
 } from './supabase.js';
 
@@ -30,16 +34,31 @@ import { renderWords } from './words.js';
 
 
 let editingWordId = null;
+let editingUnitId = null;
 
 
 async function handleCreateUnit() {
+
     const title = unitTitleInput.value.trim();
 
     if (!title) {
         return;
     }
 
-    const result = await addUnit(title);
+    let result;
+
+    if (editingUnitId) {
+
+        result = await updateUnit(
+            editingUnitId,
+            title
+        );
+
+    } else {
+
+        result = await addUnit(title);
+
+    }
 
     if (result.error) {
 
@@ -57,9 +76,14 @@ async function handleCreateUnit() {
 
     await renderUnitsSelect();
     await loadWords();
-    await renderAdminUnits(handleDeleteUnit);
+    await renderAdminUnits(
+        handleDeleteUnit,
+        handleEditUnit
+    );
 
-    unitTitleInput.value = '';
+    editingUnitId = null;
+
+    setAddUnitMode();
 }
 
 createUnitBtn.addEventListener('click', handleCreateUnit);
@@ -156,6 +180,11 @@ addWordBtn.addEventListener('click', handleAddWord);
 
 cancelEditBtn.addEventListener('click', handleCancelEdit);
 
+cancelUnitEditBtn.addEventListener(
+    'click',
+    handleCancelUnitEdit
+);
+
 ukrainianInput.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
         handleAddWord();
@@ -167,6 +196,26 @@ englishInput.addEventListener('keydown', event => {
         handleAddWord();
     }
 });
+
+
+function handleEditUnit(unit) {
+
+    editingUnitId = unit.id;
+
+    unitTitleInput.value = unit.title;
+
+    setUpdateUnitMode();
+
+}
+
+
+function handleCancelUnitEdit() {
+
+    editingUnitId = null;
+
+    setAddUnitMode();
+
+}
 
 
 function handleEditWord(word) {
@@ -235,7 +284,10 @@ async function handleDeleteUnit(unit) {
 
     await refreshCache();
 
-    await renderAdminUnits(handleDeleteUnit);
+    await renderAdminUnits(
+        handleDeleteUnit,
+        handleEditUnit
+    );
     await renderUnitsSelect();
     await loadWords();
 }
@@ -245,7 +297,10 @@ export async function initAdmin() {
 
     await renderUnitsSelect();
 
-    await renderAdminUnits(handleDeleteUnit);
+    await renderAdminUnits(
+        handleDeleteUnit,
+        handleEditUnit
+    );
 
     await loadWords();
 
